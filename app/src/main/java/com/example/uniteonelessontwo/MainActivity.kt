@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
@@ -18,12 +19,21 @@ class MainActivity : AppCompatActivity() {
 
         rollButton.setOnClickListener {
             generateNumber()
+
         }
 
     }
 
     private fun generateNumber() {
+
+        val number = Dice(6).roll().toString()
+
         val textView = findViewById<TextView>(R.id.number)
-        textView.text = (0..6).random().toString()
+        textView.text = number
+        getToastMessage("You number is $number")
+    }
+
+    private fun getToastMessage(toastMessage: String) {
+        Toast.makeText(applicationContext,toastMessage, Toast.LENGTH_SHORT).show()
     }
 }
